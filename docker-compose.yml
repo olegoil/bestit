@@ -34,7 +34,9 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./dockconf/mariadb/mariadb-data:/var/lib/mysql
+      - ./mariadb/mariadb-data:/var/lib/mysql
+      - ./mariadb/mariadb-data/init.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
     container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
